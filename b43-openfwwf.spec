@@ -1,6 +1,6 @@
 Name:		b43-openfwwf
 Version:	5.2
-Release:	4%{?dist}
+Release:	10%{?dist}
 Summary:	Open firmware for some Broadcom 43xx series WLAN chips
 Group:		System Environment/Kernel
 License:	GPLv2
@@ -32,7 +32,7 @@ make %{?_smp_mflags}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-make install PREFIX=$RPM_BUILD_ROOT/lib/firmware/b43
+make install PREFIX=$RPM_BUILD_ROOT/lib/firmware/b43-open
 install -p -D -m 0644 openfwwf.conf $RPM_BUILD_ROOT%{_sysconfdir}/modprobe.d/openfwwf.conf
 
 
@@ -44,14 +44,32 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(-,root,root,-)
 %doc COPYING LICENSE README.openfwwf
-%dir /lib/firmware/b43
-/lib/firmware/b43/b0g0bsinitvals5.fw
-/lib/firmware/b43/b0g0initvals5.fw
-/lib/firmware/b43/ucode5.fw
+%dir /lib/firmware/b43-open
+/lib/firmware/b43-open/b0g0bsinitvals5.fw
+/lib/firmware/b43-open/b0g0initvals5.fw
+/lib/firmware/b43-open/ucode5.fw
 %{_sysconfdir}/modprobe.d/openfwwf.conf
 
 
 %changelog
+* Sat Aug 03 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 5.2-10
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
+
+* Wed Feb 13 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 5.2-9
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
+
+* Wed Jul 18 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 5.2-8
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
+
+* Thu Jan 12 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 5.2-7
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
+
+* Mon Feb 07 2011 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 5.2-6
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_15_Mass_Rebuild
+
+* Thu Nov 11 2010 Peter Lemenkov <lemenkov@gmail.com> 5.2-5
+- Changed directory for storing firmware (rhbz #651350)
+
 * Tue Mar 16 2010 John W. Linville <linville@redhat.com> 5.2-4
 - Remove erroneous copyright notice from README.openfwwf
 
